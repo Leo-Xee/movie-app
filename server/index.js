@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
 const { User } = require('./models/User');
+const { auth } = require('./middleware/auth');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -68,6 +69,18 @@ app.post('/api/users/signIn', (req, res) => {
 // 로그아웃
 
 // 인증
+app.get('/api/users/auth', auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image,
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

@@ -76,6 +76,20 @@ userSchema.methods.generateToken = function (cb) {
   });
 };
 
+userSchema.static.findByToken = function (token, cb) {
+  const user = this;
+
+  // 유저의 쿠키를 받아서 복호화해서 나온 _id와 token으로 해당 유저를 찾는다.
+  jwt.verify(token, process.env.SECRET_TOKEN, function (err, decoded) {
+    if (err) return err;
+
+    user.findOne({ _id: decoded, token: token }, function (err, user) {
+      if (err) return err;
+      cb(null, user);
+    });
+  });
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = { User };
