@@ -19,7 +19,7 @@ mongoose
   .then(() => console.log('MongoDB Connected!!'))
   .catch((e) => console.log(e));
 
-app.get('/', (req, res) => {
+app.get('/api/hello', (req, res) => {
   res.send('Hello world!!');
 });
 
