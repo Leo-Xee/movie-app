@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={LandingPage}></Route>
-      <Route exact path="/signUp" component={SignInPage}></Route>
-      <Route exact path="/signIn" component={SignUpPage}></Route>
+      <Route exact path="/signUp" component={SignUpPage}></Route>
+      <Route exact path="/signIn" component={SignInPage}></Route>
     </Router>
   );
 }

@@ -28,8 +28,8 @@ app.post('/api/users/signUp', (req, res) => {
   const user = new User(req.body);
 
   user.save((err) => {
-    if (err) return res.json({ sucess: false, err });
-    return res.status(200).json({ success: true });
+    if (err) return res.json({ signUpSucess: false, err });
+    return res.status(200).json({ signUpSuccess: true });
   });
 });
 
