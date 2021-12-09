@@ -76,7 +76,7 @@ userSchema.methods.generateToken = function (cb) {
   });
 };
 
-userSchema.static.findByToken = function (token, cb) {
+userSchema.statics.findByToken = function (token, cb) {
   const user = this;
 
   // 유저의 쿠키를 받아서 복호화해서 나온 _id와 token으로 해당 유저를 찾는다.

@@ -67,6 +67,14 @@ app.post('/api/users/signIn', (req, res) => {
 });
 
 // 로그아웃
+app.post('/api/users/signOut', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err) => {
+    if (err) return res.json({ signOutSuccess: false, err });
+    return res.status(200).json({
+      signOutSuccess: true,
+    });
+  });
+});
 
 // 인증
 app.get('/api/users/auth', auth, (req, res) => {
