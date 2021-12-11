@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../../../_action/user_action';
 import { withRouter } from 'react-router-dom';
+import { Form, Button, Input } from 'antd';
 
 function SignInPage(props) {
   const [Email, setEmail] = useState('');
@@ -17,8 +18,6 @@ function SignInPage(props) {
   };
 
   const onSubmitHandler = (e) => {
-    e.preventDefault();
-
     let body = {
       email: Email,
       password: Password,
@@ -34,26 +33,28 @@ function SignInPage(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="Email">Email</label>
-        <input
-          name="Email"
-          type="email"
-          value={Email}
-          onChange={onEmailHandler}
-        />
-        <br />
-        <label htmlFor="Password">Password</label>
-        <input
-          name="Password"
-          type="password"
-          value={Password}
-          onChange={onPasswordHandler}
-        />
-        <br />
-        <button>Sign In</button>
-      </form>
+    <div style={{ width: '400px', margin: '15% auto 0' }}>
+      <Form onFinish={onSubmitHandler}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: '이메일을 입력하세요.' }]}
+        >
+          <Input type="email" onChange={onEmailHandler} />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: '비밀번호를 입력하세요.' }]}
+        >
+          <Input type="password" onChange={onPasswordHandler} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            로그인
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }

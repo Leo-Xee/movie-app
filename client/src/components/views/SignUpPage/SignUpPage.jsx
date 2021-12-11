@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { signUpUser } from '../../../_action/user_action';
+import { Form, Input, Button } from 'antd';
 
 function SignUpPage(props) {
   const [Email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function SignUpPage(props) {
   };
 
   const onSubmitHandler = (e) => {
-    e.preventDefault();
+    console.log(Email, Password, ConfirmPassword);
 
     if (Password !== ConfirmPassword) {
       return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
@@ -41,34 +42,35 @@ function SignUpPage(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="Email">Email</label>
-        <input
-          name="Email"
-          type="email"
-          value={Email}
-          onChange={onEmailHandler}
-        />
-        <br />
-        <label htmlFor="Password">Password</label>
-        <input
-          name="Password"
-          type="password"
-          value={Password}
-          onChange={onPasswordHandler}
-        />
-        <br />
-        <label htmlFor="ConfirmPassword">ConfirmPassword</label>
-        <input
-          name="ComfirmPassword"
-          type="password"
-          value={ConfirmPassword}
-          onChange={onConfirmPasswordHandler}
-        />
-        <br />
-        <button>Sign Up</button>
-      </form>
+    <div style={{ width: '400px', margin: '15% auto 0' }}>
+      <Form onFinish={onSubmitHandler}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: '이메일을 입력하세요.' }]}
+        >
+          <Input type="email" onChange={onEmailHandler} />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: '비밀번호를 입력하세요.' }]}
+        >
+          <Input type="password" onChange={onPasswordHandler} />
+        </Form.Item>
+        <Form.Item
+          label="ConfirmPassword"
+          name="Conrimpassword"
+          rules={[{ required: true, message: '비밀번호확인을 입력하세요.' }]}
+        >
+          <Input type="password" onChange={onConfirmPasswordHandler} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            회원가입
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }

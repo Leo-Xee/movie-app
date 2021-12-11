@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  padding: 5px 20px;
+  border-bottom: solid 1px #e8e8e8;
+  box-shadow: 0 0 30px #f3f1f1;
+  background-color: white;
+}
+
+.header .logo a img {
+  width: 150px;
+}
+
+.menu_container {
+  display: flex;
+}
+
+.left_menu {
+  width: 200px;
+  margin-left: 30px;
+}
+
+.right_menu {
+  position: absolute;
+  right: 10px;
+  width: 180px;
+}

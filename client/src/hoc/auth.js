@@ -14,7 +14,6 @@ export default function auth(SpecificComponent, option, admin = null) {
 
     useEffect(() => {
       dispatch(authUser()).then((res) => {
-        console.log(res.payload);
         // 로그인 안한 유저
         if (!res.payload.isAuth) {
           if (option) {
