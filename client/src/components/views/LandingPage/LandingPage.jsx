@@ -1,6 +1,8 @@
+import { Row } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
+import GridCards from '../common/GridCards';
 import MainImage from './MainImage/MainImage';
 
 const URL = process.env.REACT_APP_API_URL;
@@ -19,7 +21,7 @@ function LandingPage(props) {
 
   const getMoives = (endpoint) => {
     axios.get(endpoint).then((res) => {
-      console.log(res.data.results[0]);
+      console.log(res.data.results);
       setMovies([...Movies, ...res.data.results]);
       setMainMovieImage(res.data.results[1]);
     });
@@ -37,6 +39,18 @@ function LandingPage(props) {
       <div style={{ width: '85%', margin: '1rem auto' }}>
         <h2>Movies by lastest</h2>
         <hr />
+        <Row gutter={[16, 16]}>
+          {Movies &&
+            Movies.map((movie, idx) => (
+              <React.Fragment key={idx}>
+                <GridCards
+                  movieId={movie.id}
+                  image={`${IMAGE_URL}w500${movie.poster_path}`}
+                  title={movie.original_title}
+                />
+              </React.Fragment>
+            ))}
+        </Row>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button>Load More</button>
