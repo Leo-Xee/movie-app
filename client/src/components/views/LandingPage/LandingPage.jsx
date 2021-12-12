@@ -1,5 +1,6 @@
 import { Row } from 'antd';
 import axios from 'axios';
+import { current } from 'immer';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import GridCards from '../common/GridCards';
@@ -9,21 +10,33 @@ const URL = process.env.REACT_APP_API_URL;
 const KEY = process.env.REACT_APP_API_KEY;
 const IMAGE_URL = process.env.REACT_APP_IMAGE_BASE_URL;
 
-console.log(process.env);
 function LandingPage(props) {
   const [Movies, setMovies] = useState([]);
   const [MainMovieImage, setMainMovieImage] = useState(null);
+  const [currentPage, setcurrentPage] = useState(1);
 
   useEffect(() => {
-    const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=1`;
+    const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=${currentPage}`;
     getMoives(endpoint);
   }, []);
 
   const getMoives = (endpoint) => {
     axios.get(endpoint).then((res) => {
       console.log(res.data.results);
-      setMovies([...Movies, ...res.data.results]);
+      setMovies([...res.data.results]);
       setMainMovieImage(res.data.results[1]);
+    });
+  };
+
+  const loadMoreHandler = () => {
+    console.log('clicked');
+    const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=${
+      currentPage + 1
+    }`;
+
+    axios.get(endpoint).then((res) => {
+      setMovies([...Movies, ...res.data.results]);
+      setcurrentPage(currentPage + 1);
     });
   };
 
@@ -53,7 +66,7 @@ function LandingPage(props) {
         </Row>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button>Load More</button>
+        <button onClick={loadMoreHandler}>Load More</button>
       </div>
     </div>
   );
