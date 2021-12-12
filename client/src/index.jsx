@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import rootReducer from './_reducer/rootReducer';
+require('dotenv').config();
 
 const store = configureStore({
   reducer: rootReducer,

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function RightMenu(props) {
-  const [current, setCurrent] = useState('');
+  const [current] = useState('');
   const user = useSelector((state) => state.user);
 
   const onLogOutHandler = () => {
