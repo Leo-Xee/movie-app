@@ -37,21 +37,21 @@ function SignUpPage(props) {
       <Form onFinish={onSubmitHandler}>
         <Form.Item
           label="Email"
-          name="email"
+          name="Email"
           rules={[{ required: true, message: '이메일을 입력하세요.' }]}
         >
           <Input type="email" onChange={onChange} />
         </Form.Item>
         <Form.Item
           label="Password"
-          name="password"
+          name="Password"
           rules={[{ required: true, message: '비밀번호를 입력하세요.' }]}
         >
           <Input type="password" onChange={onChange} />
         </Form.Item>
         <Form.Item
           label="ConfirmPassword"
-          name="Conrimpassword"
+          name="ConfirmPassword"
           rules={[{ required: true, message: '비밀번호확인을 입력하세요.' }]}
         >
           <Input type="password" onChange={onChange} />

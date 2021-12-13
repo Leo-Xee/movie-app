@@ -17,6 +17,7 @@ function RightMenu(props) {
   };
 
   if (user.userData && !user.userData.isAuth) {
+    console.log('check');
     return (
       <Menu
         mode={props.mode}
