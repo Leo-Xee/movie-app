@@ -10,9 +10,7 @@ export default function NavBar(props) {
   return (
     <nav className="header">
       <div className="logo">
-        <a href="/">
-          <img src={logo} alt="logo" />
-        </a>
+        <img src={logo} alt="logo" />
       </div>
       <div className="menu_container">
         <div className="left_menu">
