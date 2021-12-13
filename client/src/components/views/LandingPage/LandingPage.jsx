@@ -1,4 +1,4 @@
-import { Row } from 'antd';
+import { Button, Row } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
@@ -66,7 +66,7 @@ function LandingPage(props) {
         </Row>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={loadMoreHandler}>Load More</button>
+        <Button onClick={loadMoreHandler}>Load More</Button>
       </div>
     </div>
   );

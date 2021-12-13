@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../../../_action/user_action';
 import { withRouter } from 'react-router-dom';
 import { Form, Button, Input } from 'antd';
+import useInput from '../../../hooks/useInput';
 
 function SignInPage(props) {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
+  const [{ Email, Password }, onChange] = useInput({
+    Email: '',
+    Password: '',
+  });
   const dispatch = useDispatch();
-
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const onPasswordHandler = (e) => {
-    setPassword(e.currentTarget.value);
-  };
 
   const onSubmitHandler = (e) => {
     let body = {
@@ -40,14 +35,14 @@ function SignInPage(props) {
           name="email"
           rules={[{ required: true, message: '이메일을 입력하세요.' }]}
         >
-          <Input type="email" onChange={onEmailHandler} />
+          <Input type="email" onChange={onChange} />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: '비밀번호를 입력하세요.' }]}
         >
-          <Input type="password" onChange={onPasswordHandler} />
+          <Input type="password" onChange={onChange} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">

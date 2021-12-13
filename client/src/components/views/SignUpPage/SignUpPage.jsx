@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { signUpUser } from '../../../_action/user_action';
 import { Form, Input, Button } from 'antd';
+import useInput from '../../../hooks/useInput';
 
 function SignUpPage(props) {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [ConfirmPassword, setConfirmPassword] = useState('');
+  const [{ Email, Password, ConfirmPassword }, onChange] = useInput({
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+  });
   const dispatch = useDispatch();
-
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const onPasswordHandler = (e) => {
-    setPassword(e.currentTarget.value);
-  };
-
-  const onConfirmPasswordHandler = (e) => {
-    setConfirmPassword(e.currentTarget.value);
-  };
 
   const onSubmitHandler = (e) => {
     console.log(Email, Password, ConfirmPassword);
@@ -49,21 +40,21 @@ function SignUpPage(props) {
           name="email"
           rules={[{ required: true, message: '이메일을 입력하세요.' }]}
         >
-          <Input type="email" onChange={onEmailHandler} />
+          <Input type="email" onChange={onChange} />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: '비밀번호를 입력하세요.' }]}
         >
-          <Input type="password" onChange={onPasswordHandler} />
+          <Input type="password" onChange={onChange} />
         </Form.Item>
         <Form.Item
           label="ConfirmPassword"
           name="Conrimpassword"
           rules={[{ required: true, message: '비밀번호확인을 입력하세요.' }]}
         >
-          <Input type="password" onChange={onConfirmPasswordHandler} />
+          <Input type="password" onChange={onChange} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
