@@ -31,7 +31,7 @@ export default function auth(SpecificComponent, option, admin = null) {
       });
     }, [dispatch, props.history]);
 
-    return <SpecificComponent />;
+    return <SpecificComponent {...props} />;
   }
 
   return AuthenticationCheck;

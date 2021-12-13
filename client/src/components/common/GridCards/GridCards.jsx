@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function GridCards(props) {
   return (
-    <Col lg={6} md={8} xs={24}>
+    <Col lg={6} md={8} xs={12}>
       <div>
         <a href={`/movie/${props.movieId}`}>
           <img

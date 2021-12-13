@@ -1,10 +1,9 @@
 import { Row } from 'antd';
 import axios from 'axios';
-import { current } from 'immer';
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
-import GridCards from '../common/GridCards';
-import MainImage from './MainImage/MainImage';
+import GridCards from '../../common/GridCards/GridCards';
+import MainImage from '../../common/MainImage/MainImage';
 
 const URL = process.env.REACT_APP_API_URL;
 const KEY = process.env.REACT_APP_API_KEY;
@@ -17,6 +16,7 @@ function LandingPage(props) {
 
   useEffect(() => {
     const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=${currentPage}`;
+    console.log(endpoint);
     getMoives(endpoint);
   }, []);
 
@@ -29,7 +29,6 @@ function LandingPage(props) {
   };
 
   const loadMoreHandler = () => {
-    console.log('clicked');
     const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=${
       currentPage + 1
     }`;
