@@ -1,25 +1,66 @@
 import { Button } from 'antd';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Favorite(props) {
-  useEffect(() => {
-    let variables = {
-      userFrom: props.userId,
-      movieId: props.movieId,
-    };
+  const [FavoriteNumber, setFavoritedNumber] = useState(0);
+  const [Favorited, setFavorited] = useState(false);
 
-    axios.post('/api/favoriteNumber', variables).then((res) => {
+  let variables = {
+    userFrom: props.userId,
+    movieId: props.movieId,
+    movieTitle: props.movieInfo.title,
+    moviePost: props.movieInfo.backdrop_path,
+    movieRunTime: props.movieInfo.runtime,
+  };
+
+  useEffect(() => {
+    axios.post('/api/favorite/favoriteNumber', variables).then((res) => {
       if (res.data.success) {
+        setFavoritedNumber(res.data.favoriteNumber);
+      } else {
+        alert('정보를 가져오는데 실패했습니다.');
+      }
+    });
+
+    axios.post('/api/favorite/favorited', variables).then((res) => {
+      if (res.data.success) {
+        setFavorited(res.data.favorited);
       } else {
         alert('정보를 가져오는데 실패했습니다.');
       }
     });
   }, []);
 
+  const onClickFavorite = () => {
+    if (Favorited) {
+      axios.post('/api/favorite/removeFromFavorite', variables).then((res) => {
+        if (res.data.success) {
+          console.log(res.data);
+          setFavoritedNumber(Favorited - 1);
+          setFavorited(!Favorited);
+        } else {
+          alert('Favorite 리스트에서 지우는 것을 실패했습니다.');
+        }
+      });
+    } else {
+      axios.post('/api/favorite/addFromFavorite', variables).then((res) => {
+        if (res.data.success) {
+          console.log(res.data);
+          setFavoritedNumber(Favorited + 1);
+          setFavorited(!Favorited);
+        } else {
+          alert('Favorite 리스트에 추가하는 것을 실패했습니다.');
+        }
+      });
+    }
+  };
+
   return (
     <div>
-      <Button>Favorite</Button>
+      <Button onClick={onClickFavorite}>
+        {Favorited ? 'Not Favorite' : 'Add to Favorite'} {FavoriteNumber}
+      </Button>
     </div>
   );
 }
