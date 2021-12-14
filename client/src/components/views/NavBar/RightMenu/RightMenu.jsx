@@ -17,9 +17,9 @@ function RightMenu(props) {
   };
 
   if (user.userData && !user.userData.isAuth) {
-    console.log('check');
     return (
       <Menu
+        className="large"
         mode={props.mode}
         selectedKeys={[current]}
         style={{ borderBottom: 'none' }}
@@ -35,6 +35,7 @@ function RightMenu(props) {
   } else {
     return (
       <Menu
+        className="small"
         mode={props.mode}
         selectedKeys={[current]}
         style={{ borderBottom: 'none' }}

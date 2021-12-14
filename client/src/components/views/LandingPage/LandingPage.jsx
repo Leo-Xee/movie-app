@@ -16,7 +16,6 @@ function LandingPage(props) {
 
   useEffect(() => {
     const endpoint = `${URL}movie/popular?api_key=${KEY}&language=en-US&page=${currentPage}`;
-    console.log(endpoint);
     getMoives(endpoint);
   }, []);
 
@@ -24,7 +23,7 @@ function LandingPage(props) {
     axios.get(endpoint).then((res) => {
       console.log(res.data.results);
       setMovies([...res.data.results]);
-      setMainMovieImage(res.data.results[1]);
+      setMainMovieImage(res.data.results[15]);
     });
   };
 

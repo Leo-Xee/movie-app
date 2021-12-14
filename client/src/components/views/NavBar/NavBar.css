@@ -21,6 +21,13 @@
 
 .right_menu {
   position: absolute;
-  right: 10px;
-  width: 180px;
+  right: 5px;
+}
+
+.right_menu .large {
+  width: 170px;
+}
+
+.right_menu .small {
+  width: 100px;
 }

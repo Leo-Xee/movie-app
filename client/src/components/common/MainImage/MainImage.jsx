@@ -9,8 +9,8 @@ export default function MainMovieImage(props) {
         41%,rgba(0,0,0,0.65)
         100%), url('${props.image}') #1c1c1c`,
         height: '700px',
-        backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         width: '100%',
         position: 'relative',

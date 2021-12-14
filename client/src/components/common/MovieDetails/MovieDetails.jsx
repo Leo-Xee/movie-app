@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-import MainMovieImage from '../MainImage/MainImage';
+import MainImage from '../MainImage/MainImage';
 import MovieInfo from './MovieInfo/MovieInfo';
 import GridCards from '../GridCards/GridCards';
 import { Button, Row } from 'antd';
@@ -36,7 +36,7 @@ export default function MovieDetails(props) {
   return (
     <div>
       {Movie && (
-        <MainMovieImage
+        <MainImage
           image={`${IMAGE_URL}w1280${Movie.backdrop_path}`}
           title={Movie.original_title}
           desc={Movie.overview}
