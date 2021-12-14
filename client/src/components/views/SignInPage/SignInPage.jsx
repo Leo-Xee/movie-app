@@ -20,6 +20,7 @@ function SignInPage(props) {
 
     dispatch(signInUser(body)).then((res) => {
       if (res.payload.signInSuccess) {
+        localStorage.setItem('userId', res.payload.userId);
         props.history.push('/');
       } else {
         alert('이메일이나 비밀번호가 일치하지 않습니다.');

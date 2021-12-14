@@ -5,6 +5,7 @@ import MainImage from '../MainImage/MainImage';
 import MovieInfo from './MovieInfo/MovieInfo';
 import GridCards from '../GridCards/GridCards';
 import { Button, Row } from 'antd';
+import Favorite from './Favorite/Favorite';
 
 const URL = process.env.REACT_APP_API_URL;
 const KEY = process.env.REACT_APP_API_KEY;
@@ -46,8 +47,12 @@ export default function MovieDetails(props) {
       <div style={{ width: '85%', margin: '10px auto' }}>
         <br />
 
-        <div style={{ displaty: 'flex' }}>
-          <Button>Favorite</Button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Favorite
+            movieInfo={Movie}
+            movie={movieId}
+            userFrom={localStorage.getItem('userId')}
+          />
         </div>
 
         {Movie && <MovieInfo movie={Movie} />}
