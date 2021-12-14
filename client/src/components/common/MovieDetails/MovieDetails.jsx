@@ -45,6 +45,11 @@ export default function MovieDetails(props) {
 
       <div style={{ width: '85%', margin: '10px auto' }}>
         <br />
+
+        <div style={{ displaty: 'flex' }}>
+          <Button>Favorite</Button>
+        </div>
+
         {Movie && <MovieInfo movie={Movie} />}
         <div
           style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}

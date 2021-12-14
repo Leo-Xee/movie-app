@@ -25,7 +25,7 @@ export default function auth(SpecificComponent, option, admin = null) {
           if (admin && !res.payload.isAdmin) {
             props.history.push('/');
           } else {
-            if (!option) {
+            if (!option && option !== null) {
               props.history.push('/');
             }
           }
