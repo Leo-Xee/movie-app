@@ -13,6 +13,7 @@ function RightMenu(props) {
       if (!res.data.signOutSuccess) {
         alert('로그아웃이 실패했습니다.');
       }
+      localStorage.removeItem('userId');
     });
   };
 

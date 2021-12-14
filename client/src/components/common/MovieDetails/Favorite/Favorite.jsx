@@ -34,7 +34,7 @@ export default function Favorite(props) {
 
   const onClickFavorite = () => {
     if (Favorited) {
-      axios.post('/api/favorite/removeFromFavorite', variables).then((res) => {
+      axios.post('/api/favorite/removeFromFavorites', variables).then((res) => {
         if (res.data.success) {
           console.log(res.data);
           setFavoritedNumber(Favorited - 1);
@@ -44,7 +44,7 @@ export default function Favorite(props) {
         }
       });
     } else {
-      axios.post('/api/favorite/addFromFavorite', variables).then((res) => {
+      axios.post('/api/favorite/addToFavorite', variables).then((res) => {
         if (res.data.success) {
           console.log(res.data);
           setFavoritedNumber(Favorited + 1);

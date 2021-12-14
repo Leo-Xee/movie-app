@@ -34,7 +34,8 @@ router.post('/favorited', (req, res) => {
   });
 });
 
-router.post('/addFromFavorite', (req, res) => {
+router.post('/addToFavorite', (req, res) => {
+  console.log(req.body);
   const favorite = new Favorite(req.body);
 
   favorite.save((err, doc) => {
@@ -43,15 +44,26 @@ router.post('/addFromFavorite', (req, res) => {
   });
 });
 
-router.post('/removeFromFavorite', (req, res) => {
+router.post('/removeFromFavorites', (req, res) => {
   Favorite.findOneAndDelete({
     movieId: req.body.movieId,
-    useFrom: req.body.userFrom,
+    userFrom: req.body.userFrom,
   }).exec((err, doc) => {
     if (err) return res.status(400).send(err);
     return res.status(200).json({
       success: true,
       doc,
+    });
+  });
+});
+
+router.post('/getFavoriteMovies', (req, res) => {
+  console.log(req.body);
+  Favorite.find({ userFrom: req.body.userFrom }).exec((err, favorites) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).json({
+      success: true,
+      favorites: favorites,
     });
   });
 });

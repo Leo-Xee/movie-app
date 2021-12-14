@@ -7,6 +7,7 @@ import SignUpPage from './components/views/SignUpPage/SignUpPage';
 import NavBar from './components/views/NavBar/NavBar';
 import auth from './hoc/auth';
 import MovieDetails from './components/common/MovieDetails/MovieDetails';
+import FavoritePage from './components/views/FavoritePage/FavoritePage';
 
 function App(props) {
   return (
@@ -20,6 +21,11 @@ function App(props) {
           exact
           path="/movie/:movieId"
           component={auth(MovieDetails, null)}
+        ></Route>
+        <Route
+          exact
+          path="/favorite"
+          component={auth(FavoritePage, true)}
         ></Route>
       </div>
     </>

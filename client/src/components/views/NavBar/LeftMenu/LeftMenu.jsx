@@ -10,7 +10,7 @@ export default function LeftMenu(props) {
           <Link to="/">Home</Link>
         </Menu.Item>
         <Menu.Item key="favorite">
-          <Link to="favorite">Favorite</Link>
+          <Link to="/favorite">Favorite</Link>
         </Menu.Item>
       </Menu>
     </div>

@@ -7,7 +7,6 @@ export default function useInput(initialForm) {
     const { id, value } = e.target;
     setForm((form) => ({ ...form, [id]: value }));
   };
-  console.log(form);
 
   return [form, onChange];
 }

@@ -13,7 +13,7 @@ const IMAGE_URL = process.env.REACT_APP_IMAGE_BASE_URL;
 
 export default function MovieDetails(props) {
   const movieId = props.match.params.movieId;
-  const [Movie, setMovie] = useState(null);
+  const [Movie, setMovie] = useState({});
   const [Crew, setCrew] = useState([]);
   const [castToggle, setcastToggle] = useState(false);
 
